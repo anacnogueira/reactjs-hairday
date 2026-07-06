@@ -1,9 +1,10 @@
- export default function App() {
+ import { SunHorizonIcon } from "@phosphor-icons/react";
  
+ export default function App() {
 
   return (
     <div >
-      Teste
+      <SunHorizonIcon size={32} />
     </div>
   )
 }
