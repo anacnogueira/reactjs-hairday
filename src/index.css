@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+:root {
+  color-scheme: dark;
+  font-family: var(--font-sans);
+
+  color: var(--color-gray-100);
+  background-color: var(--color-gray-800);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 @theme {
   --color-*: initial;
   --color-yellow-light: #DBC170;

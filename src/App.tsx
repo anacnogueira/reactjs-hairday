@@ -1,10 +1,10 @@
- import { SunHorizonIcon } from "@phosphor-icons/react";
- 
+import Text from "./components/Text";
+
  export default function App() {
 
   return (
     <div >
-      <SunHorizonIcon size={32} />
+      <Text as="div" variant="title-lg">Agendamentos</Text>
     </div>
   )
 }
