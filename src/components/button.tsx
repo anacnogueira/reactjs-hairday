@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from "class-variance-authority";
-import Text from "./Text";
+import Text from "./text";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const buttonVariants = cva(

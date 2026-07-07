@@ -1,8 +1,9 @@
 import Button from "./components/button";
 import ButtonIcon from "./components/button-icon";
 import { Icon } from "./components/icon";
-import Text from "./components/Text";
-import { SpinnerIcon, TrashIcon } from "@phosphor-icons/react"
+import InputText from "./components/input-text";
+import Text from "./components/text";
+import { SpinnerIcon, TrashIcon, UserSquareIcon } from "@phosphor-icons/react"
 
  export default function App() {
 
@@ -12,6 +13,7 @@ import { SpinnerIcon, TrashIcon } from "@phosphor-icons/react"
       <Icon svg={SpinnerIcon} animate className="text-yellow" />
        <Button>Agendar</Button>
        <ButtonIcon icon={TrashIcon} />
+       <InputText icon={UserSquareIcon} placeholder="Type your name"/>
     </div>
   )
 }
