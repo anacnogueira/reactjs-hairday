@@ -1,5 +1,6 @@
 import Button from "./components/button";
 import ButtonIcon from "./components/button-icon";
+import DatePicker from "./components/date-picker";
 import { Icon } from "./components/icon";
 import InputText from "./components/input-text";
 import Text from "./components/text";
@@ -14,6 +15,7 @@ import { SpinnerIcon, TrashIcon, UserSquareIcon } from "@phosphor-icons/react"
        <Button>Agendar</Button>
        <ButtonIcon icon={TrashIcon} />
        <InputText icon={UserSquareIcon} placeholder="Type your name"/>
+       <DatePicker />
     </div>
   )
 }
