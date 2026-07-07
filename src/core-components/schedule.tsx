@@ -1,3 +1,4 @@
+import PeriodItem from "./period-item";
 import PeriodList from "./period-list";
 import ScheduleHeader from "./schedule-header";
 
@@ -8,7 +9,12 @@ export default function Schedule() {
                 <ScheduleHeader />
                 <div className="space-y-3">
                     <PeriodList period="morning">
-                        Item
+                        <PeriodItem
+                            key="1"
+                            time="09:00"
+                            client="Ana Maria"
+                            id="1"
+                        />
                     </PeriodList>
 
                     <PeriodList period="afternoon">
@@ -19,8 +25,7 @@ export default function Schedule() {
                         Item
                     </PeriodList>
                 </div>
-            </div>
-            
+            </div>            
         </div>
     )
 }
