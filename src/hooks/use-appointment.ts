@@ -16,7 +16,13 @@ export default function useAppointment () {
         ])
     }
 
+    function deleteAppointment(id: string) {
+        setAppointments(appointments.filter(appointment => appointment.id !== id))
+    }
+
+
     return {
-        createAppointment
+        createAppointment,
+        deleteAppointment
     };
 }

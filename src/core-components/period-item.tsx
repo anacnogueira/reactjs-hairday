@@ -1,6 +1,7 @@
 import { TrashIcon } from "@phosphor-icons/react";
 import ButtonIcon from "../components/button-icon";
 import Text from "../components/text";
+import useAppointment from "../hooks/use-appointment";
 
 interface PeriodItemProps {
     id: string;
@@ -13,6 +14,12 @@ export default function PeriodItem({
     time,
     client
 }: PeriodItemProps) {
+    const { deleteAppointment } = useAppointment();
+
+    function handleDeleteAppointment(id: string) {
+        deleteAppointment(id);
+    }
+    
     return (
         <li className="flex items-center gap-5 py-1">
             <Text variant="title-md">{time}</Text>
@@ -20,6 +27,7 @@ export default function PeriodItem({
             <ButtonIcon 
                 icon={TrashIcon}
                 className="shrink-0 fill-yellow"
+                onClick={() => handleDeleteAppointment(id)}
             />
         </li>
     );
