@@ -7,6 +7,7 @@ import Button from "../components/button";
 import React from "react";
 import useAppointment from "../hooks/use-appointment";
 import dayjs from "dayjs";
+import useAppointments from "../hooks/use-appointments";
 
 const morningTimeSlots = ["09:00", "10:00", "11:00", "12:00"];
 const afternoonTimeSlots = ["13:00", "14:00", "15:00", "16:00", "17:00", "18:00"];
@@ -18,6 +19,9 @@ export function Sidebar() {
     const [date, setDate] =React.useState<"string">("");
 
     const { createAppointment } = useAppointment();
+    const { usedTimeSlots } = useAppointments({
+        filters: { date: date ? dayjs(date).toDate() : new Date() },
+    });
 
     function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -27,12 +31,11 @@ export function Sidebar() {
         createAppointment({
             client,
             datetime,
-        });
+        });       
 
         setClient("");
         setTime("");
         setDate("");
-
     }
 
 
@@ -74,7 +77,7 @@ export function Sidebar() {
                                             onChange={(event) => setTime(event.target.value)}
                                             key={morningTime}
                                             selected={time === morningTime}
-                                            disabled={false}
+                                            disabled={usedTimeSlots.includes(morningTime) || !date}
                                         >
                                             {morningTime}
                                         </TimeSelect>
@@ -96,7 +99,7 @@ export function Sidebar() {
                                              onChange={(event) => setTime(event.target.value)}
                                             key={afternoonTime}
                                             selected={time === afternoonTime}
-                                            disabled={false}
+                                            disabled={usedTimeSlots.includes(afternoonTime) || !date}
                                         >
                                             {afternoonTime}
                                         </TimeSelect>
@@ -118,7 +121,7 @@ export function Sidebar() {
                                             onChange={(event) => setTime(event.target.value)}
                                             key={nightTime}
                                             selected={time === nightTime}
-                                            disabled={false}
+                                            disabled={usedTimeSlots.includes(nightTime) || !date}
                                         >
                                             {nightTime}
                                         </TimeSelect>
