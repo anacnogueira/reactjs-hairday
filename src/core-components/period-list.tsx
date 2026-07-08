@@ -2,6 +2,7 @@ import { MoonStarsIcon, SunHorizonIcon } from "@phosphor-icons/react"
 import { CloudSunIcon } from "@phosphor-icons/react/dist/ssr"
 import { Icon } from "../components/icon"
 import Text from "../components/text"
+import useAppointments from "../hooks/use-appointments"
 
 const periods = {
     morning: {
@@ -30,6 +31,10 @@ interface PeriodListProps {
 
 
 export default function PeriodList({period, children}: PeriodListProps) {
+
+    const { appointments } = useAppointments();
+
+    console.log(appointments);
     
     return (
         <section className="border rounded-lg border-gray-600">
