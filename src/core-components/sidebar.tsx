@@ -4,12 +4,39 @@ import InputText from "../components/input-text";
 import Text from "../components/text";
 import TimeSelect from "../components/time-select";
 import Button from "../components/button";
+import React from "react";
+import useAppointment from "../hooks/use-appointment";
+import dayjs from "dayjs";
 
 const morningTimeSlots = ["09:00", "10:00", "11:00", "12:00"];
 const afternoonTimeSlots = ["13:00", "14:00", "15:00", "16:00", "17:00", "18:00"];
 const nightTimeSlots = ["19:00", "20:00", "21:00"];
 
 export function Sidebar() {
+    const [client, setClient] =React.useState<"string">("");
+    const [time, setTime] =React.useState<"string">("");
+    const [date, setDate] =React.useState<"string">("");
+
+    const { createAppointment } = useAppointment();
+
+    function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
+        event.preventDefault();
+
+        const datetime = dayjs(`${date} ${time}`).toISOString();
+
+        createAppointment({
+            client,
+            datetime,
+        });
+
+        setClient("");
+        setTime("");
+        setDate("");
+
+    }
+
+
+
     return (
         <aside 
             className="p-20 bg-gray-700 rounded-xl max-w-124.5 w-full flex flex-col gap-6">
@@ -22,13 +49,13 @@ export function Sidebar() {
                          Selecione data, horário e informe o nome do cliente para criar o agendamento
                     </Text>
                 </div>
-                <form className="space-y-8">
+                <form className="space-y-8" onSubmit={handleSubmit}>
                     <label className="flex flex-col gap-2 w-full">
                         <Text variant="text-md" className="text-gray-200">
                             Data
                         </Text>
 
-                        <DatePicker />
+                        <DatePicker value={date} onChange={(event) => setDate(event.target.value)} />
                     </label>
                     <div className="flex flex-col gap-2">
                         <Text variant="text-md" className="text-gray-200">
@@ -44,8 +71,9 @@ export function Sidebar() {
                                         <TimeSelect
                                             name="time"
                                             value={morningTime}
+                                            onChange={(event) => setTime(event.target.value)}
                                             key={morningTime}
-                                            selected={false}
+                                            selected={time === morningTime}
                                             disabled={false}
                                         >
                                             {morningTime}
@@ -65,8 +93,9 @@ export function Sidebar() {
                                         <TimeSelect
                                             name="time"
                                             value={afternoonTime}
+                                             onChange={(event) => setTime(event.target.value)}
                                             key={afternoonTime}
-                                            selected={false}
+                                            selected={time === afternoonTime}
                                             disabled={false}
                                         >
                                             {afternoonTime}
@@ -82,12 +111,13 @@ export function Sidebar() {
                             </Text>
                             <div className="flex flex-wrap items-center gap-2">
                                 {
-                                    afternoonTimeSlots.map((nightTime) => (
+                                    nightTimeSlots.map((nightTime) => (
                                         <TimeSelect
                                             name="time"
                                             value={nightTime}
+                                            onChange={(event) => setTime(event.target.value)}
                                             key={nightTime}
-                                            selected={false}
+                                            selected={time === nightTime}
                                             disabled={false}
                                         >
                                             {nightTime}
@@ -107,6 +137,8 @@ export function Sidebar() {
                             name="client"
                             icon={UserSquareIcon}
                             placeholder="Nome do cliente"
+                            onChange={(event) => setClient(event.target.value)}
+                            value={client}
                         />
                     </label>
                     <Button type="submit">

@@ -33,8 +33,6 @@ interface PeriodListProps {
 export default function PeriodList({period, children}: PeriodListProps) {
 
     const { appointments } = useAppointments();
-
-    console.log(appointments);
     
     return (
         <section className="border rounded-lg border-gray-600">
